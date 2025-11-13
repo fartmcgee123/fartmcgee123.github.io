@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maycee's Marvelous Cookies!!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind theme for Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // --- NEW PASTEL PALETTE ---
+                        'cookie-primary': '#B19CD9', // Light Lavender (Primary Accent)
+                        'cookie-light': '#F0F8FF',   // Alice Blue (Very light background)
+                        'cookie-accent': '#A7D7C5',  // Soft Mint/Teal (Buttons/Highlights)
+                        'cookie-dark': '#463B5D',    // Muted Indigo/Plum (Dark text/Footer)
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for the overall look */
+        body {
+            background-color: #F0F8FF; /* cookie-light background */
+            font-family: 'Inter', sans-serif;
+            color: #463B5D; /* cookie-dark text (Muted Indigo) */
+        }
+        .header-bg {
+            background-color: #B19CD9; /* cookie-primary */
+            /* New Pastel Gradient: Soft Pink to Lavender */
+            background-image: linear-gradient(135deg, #FFB6C1 0%, #B19CD9 100%);
+        }
+        .cookie-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .cookie-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Softer shadow on hover */
+        }
+        .btn-primary {
+            transition: background-color 0.2s, transform 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #7BB8A1; /* Darker version of new accent color */
+        }
+        /* Style for the active navigation link */
+        .active-link {
+            border-bottom: 2px solid #A7D7C5; /* cookie-accent (Soft Mint) */
+            color: #A7D7C5; /* cookie-accent */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header-bg shadow-xl sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo/Title -->
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                Maycee's Marvelous Cookies!!
+            </h1>
+            <!-- Structured Navigation Links - ADDED sm:flex to ensure horizontal layout -->
+            <nav class="hidden sm:flex sm:items-center">
+                <!-- Data-target tells the JS which section to show. href is set to void(0) to prevent scrolling. -->
+                <a href="javascript:void(0);" data-target="home" class="nav-link text-white hover:text-cookie-accent font-semibold transition duration-200 px-3 py-2 rounded-lg">Home</a>
+                <a href="javascript:void(0);" data-target="about" class="nav-link text-white hover:text-cookie-accent font-semibold transition duration-200 px-3 py-2 rounded-lg ml-3">About</a>
+                <a href="javascript:void(0);" data-target="contact" class="nav-link text-white hover:text-cookie-accent font-semibold transition duration-200 px-3 py-2 rounded-lg ml-3">Contact</a>
+                <a href="javascript:void(0);" data-target="menu" class="nav-link text-white hover:text-cookie-accent font-semibold transition duration-200 px-3 py-2 rounded-lg ml-3">Products</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content Sections - Only one will be visible at a time via JS -->
+
+    <!-- Home Section (Initially visible - controlled by JS) -->
+    <section id="home" class="content-section text-center py-20 bg-cookie-light">
+        <div class="container mx-auto px-4">
+            <!-- Corrected: Removed ** and used <strong> -->
+            <p class="text-xl sm:text-2xl font-medium mb-4 text-cookie-dark">
+                <strong>What We're About:</strong> Every cookie is a little piece of magic!
+            </p>
+            <h2 class="text-5xl sm:text-7xl font-black text-cookie-primary mb-8">
+                Sweet Dreams Start Here
+            </h2>
+            <!-- Link modified to use content-switching logic -->
+            <a href="javascript:void(0);" data-target="menu" class="content-switcher inline-block btn-primary bg-cookie-accent text-cookie-dark font-bold py-4 px-10 rounded-full shadow-lg text-lg uppercase tracking-wider hover:scale-105 transform transition duration-300">
+                View Our Products
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section (Hidden by default) -->
+    <section id="about" class="content-section hidden py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-12 text-cookie-dark border-b-4 border-cookie-accent inline-block pb-2 mx-auto">
+                Our Marvelous Story
+            </h2>
+            <div class="space-y-6 text-center text-lg text-gray-700">
+                <!-- Corrected: Removed ** and used <strong> -->
+                <p>
+                    <strong>How We Started:</strong> Maycee's Marvelous Cookies!! began in a tiny kitchen, fueled by a simple love for baking and a desire to create the perfect, joyful bite. What started as a hobby soon turned into a mission to spread sweetness across the world, one beautifully crafted cookie at a time.
+                </p>
+                <!-- Corrected: Removed ** and used <strong> -->
+                <p>
+                    <strong>The Owner:</strong> The business is proudly owned and operated by <strong>Maycee</strong>, the heart and soul behind every recipe. Maycee believes that the best cookies comes from the best ingredients, the sharpest focus on quality, and a massive dose of fun. It's her personal touch that makes every marvelous cookie truly special!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Hidden by default) -->
+    <section id="contact" class="content-section hidden py-16 sm:py-24 bg-cookie-light">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-12 text-cookie-dark border-b-4 border-cookie-accent inline-block pb-2 mx-auto">
+                Get In Touch
+            </h2>
+            <div class="bg-white rounded-xl shadow-2xl p-8 sm:p-12 text-center">
+                <p class="text-xl text-cookie-primary font-semibold mb-6">
+                    Ready to place an order or have a question for Maycee?
+                </p>
+                <div class="space-y-6 text-lg">
+                    <p class="font-bold text-cookie-dark">
+                        Owner's Email (Maycee):
+                        <a href="mailto:maycee@mayceesmarvelouscookies.com" class="block text-cookie-accent hover:underline text-2xl font-extrabold mt-1">maycee@mayceesmarvelouscookies.com</a>
+                    </p>
+                    <p class="font-bold text-cookie-dark">
+                        Owner's Phone:
+                        <a href="tel:555-555-2665" class="block text-cookie-accent hover:underline text-2xl font-extrabold mt-1">(555) 555-COOK</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cookie Menu Section (Hidden by default) -->
+    <section id="menu" class="content-section hidden py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-cookie-dark border-b-4 border-cookie-accent inline-block pb-2 mx-auto">
+                The Marvelous Menu (Our Products)
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+                <!-- Cookie Card Template -->
+                <script type="text/javascript">
+                    // Updated image placeholders to match the new pastel theme
+                    const cookieData = [
+                        { name: "Classic Chocolate Chip", desc: "The perfect balance of crisp edge, soft center, and melting chips.", price: "$3.00", image: "https://placehold.co/400x300/B19CD9/F0F8FF?text=CHIP" }, // Light Lavender
+                        { name: "Double Fudge Brownie", desc: "For the true chocolate lover. Rich, dense, and intensely cocoa-flavored.", price: "$3.50", image: "https://placehold.co/400x300/463B5D/A7D7C5?text=FUDGE" }, // Muted Indigo / Soft Mint
+                        { name: "Snickerdoodle", desc: "Tender, chewy cookie rolled in cinnamon and sugar—a timeless delight.", price: "$2.50", image: "https://placehold.co/400x300/DDA0DD/F0F8FF?text=SNICKER" }, // Plum Pastel
+                        { name: "Peanut Butter Dream", desc: "Soft, crisscrossed PB goodness. A delicious nostalgic classic.", price: "$3.00", image: "https://placehold.co/400x300/F0E68C/463B5D?text=P%2FBUTTER" }, // Khaki/Cream Pastel
+                        { name: "Frosted Sugar Cookie", desc: "Our buttery sugar cookie topped with smooth, homemade vanilla frosting.", price: "$3.25", image: "https://placehold.co/400x300/FFFFFF/B19CD9?text=SUGAR" }, // White / Light Lavender
+                        { name: "Oatmeal Raisin Spice", desc: "Chewy oats, sweet raisins, and a hint of warm baking spice.", price: "$2.75", image: "https://placehold.co/400x300/C8A2C8/F0F8FF?text=OATMEAL" }, // Lilac Pastel
+                        { name: "Red Velvet Swirl", desc: "A soft, cocoa-infused red velvet base swirled with cream cheese frosting.", price: "$3.50", image: "https://placehold.co/400x300/FF6961/463B5D?text=VELVET" }, // Light Coral
+                        { name: "Macadamia White Chip", desc: "Crunchy macadamia nuts paired perfectly with creamy white chocolate chips.", price: "$3.75", image: "https://placehold.co/400x300/FFFACD/B19CD9?text=MAC+NUT" }, // Lemon Chiffon
+                        { name: "Lemon Crinkle", desc: "Bright, tart, and rolled in powdered sugar. Tastes like summer!", price: "$2.75", image: "https://placehold.co/400x300/FFEFD5/A7D7C5?text=LEMON" }, // Papaya Whip
+                        { name: "S'mores Explosion", desc: "Graham crackers, chocolate pieces, and toasted mini-marshmallows baked in.", price: "$4.00", image: "https://placehold.co/400x300/C0D8E0/463B5D?text=S'MORES" }, // Powder Blue
+                        { name: "Salted Caramel Pretzel", desc: "A delightful mix of sweet caramel, salty pretzel crunch, and dark chocolate.", price: "$3.75", image: "https://placehold.co/400x300/E0BBE4/F0F8FF?text=CARAMEL" }, // Mauve Pastel
+                        { name: "Ginger Molasses", desc: "Warm, soft, and spicy, dusted with granulated sugar.", price: "$2.50", image: "https://placehold.co/400x300/FFD1DC/463B5D?text=GINGER" } // Light Pink
+                    ];
+
+                    // NOTE: This runs before the main content-switching JS to inject the cards
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const menuGrid = document.querySelector('.grid.gap-8');
+
+                        if (!menuGrid) return; // Guard clause
+
+                        cookieData.forEach(cookie => {
+                            const card = document.createElement('div');
+                            // Updated shadow and hover style for the new aesthetic
+                            card.className = 'cookie-card bg-white rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.02]';
+                            card.innerHTML = `
+                                <!-- Image Placeholder -->
+                                <img src="${cookie.image}" alt="${cookie.name}" class="w-full h-48 object-cover object-center rounded-t-xl" onerror="this.onerror=null; this.src='https://placehold.co/400x300/B19CD9/F0F8FF?text=COOKIE';" loading="lazy">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-bold mb-2 text-cookie-dark">${cookie.name}</h3>
+                                    <p class="text-gray-600 text-sm mb-4 h-12">${cookie.desc}</p>
+                                    <div class="flex justify-between items-center mt-6">
+                                        <span class="text-3xl font-extrabold text-cookie-accent">${cookie.price}</span>
+                                        <button class="bg-cookie-primary text-white py-2 px-4 rounded-full font-semibold uppercase text-xs hover:bg-cookie-dark">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                            menuGrid.appendChild(card);
+                        });
+                    });
+                </script>
+                <!-- Cards will be injected here by JavaScript -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Featured Section (Hidden by default, shown with Menu) -->
+    <section id="cta-section" class="py-16 bg-cookie-primary text-white content-section hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl sm:text-4xl font-extrabold mb-4">
+                Need a Custom Order?
+            </h3>
+            <p class="text-xl mb-8 opacity-90">
+                Birthdays, weddings, or just a Tuesday—we can bake the perfect batch for any occasion!
+            </p>
+            <!-- Link modified to use content-switching logic -->
+            <a href="javascript:void(0);" data-target="contact" class="content-switcher bg-cookie-accent text-cookie-dark font-bold py-3 px-8 rounded-full shadow-lg text-lg uppercase tracking-wide hover:opacity-90 transform transition duration-300">
+                Contact Maycee for a Quote
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cookie-dark text-cookie-light py-8">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>&copy; 2024 Maycee's Marvelous Cookies!! All rights reserved. | <a href="#" class="underline hover:text-cookie-accent">Privacy Policy</a></p>
+            <p class="mt-2">Made with Marvelous Ingredients (and Tailwind CSS)</p>
+        </div>
+    </footer>
+
+    <!-- Simple Custom Message Box (instead of alert()) -->
+    <div id="messageBox" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm mx-4 transform transition-all scale-100 duration-300">
+            <h4 class="text-xl font-bold mb-4 text-cookie-dark">Information</h4>
+            <p id="messageText" class="mb-6 text-gray-700"></p>
+            <button onclick="hideMessageBox()" class="bg-cookie-primary text-white py-2 px-4 rounded-full font-semibold w-full hover:bg-cookie-dark">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Message Box Logic (only used for non-implemented features like 'Add to Cart')
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+
+        function showMessageBox(message) {
+            messageText.textContent = message;
+            messageBox.classList.remove('hidden');
+            messageBox.classList.add('flex');
+        }
+
+        function hideMessageBox() {
+            messageBox.classList.add('hidden');
+            messageBox.classList.remove('flex');
+        }
+
+        // --- Content Switching Logic ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const ctaSection = document.getElementById('cta-section');
+
+            function setActiveContent(targetId) {
+                // 1. Hide all main content sections and the CTA
+                contentSections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+                ctaSection.classList.add('hidden');
+
+                // 2. Show the target section
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                    // 2a. If the menu is shown, also show the CTA below it
+                    if (targetId === 'menu') {
+                        ctaSection.classList.remove('hidden');
+                    }
+                }
+
+                // 3. Update active link styling
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    // Remove hover color/underline styles if you want a cleaner look for the active link
+                    link.classList.remove('text-cookie-accent', 'border-b-2', 'border-cookie-accent');
+                    link.classList.add('hover:text-cookie-accent'); // Re-add hover color for inactive links
+                });
+
+                const activeLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active-link');
+                    activeLink.classList.remove('hover:text-cookie-accent'); // Remove hover for the active link
+                }
+
+                // Ensure the page starts at the top of the content area
+                window.scrollTo(0, 0);
+            }
+
+            // Initialize: Show 'home' content and set 'home' as active link on load
+            setActiveContent('home');
+
+            // Add event listeners to all navigation links (nav-link class)
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    setActiveContent(targetId);
+                });
+            });
+
+            // Add event listeners to all internal buttons/links that switch content (content-switcher class)
+            document.querySelectorAll('.content-switcher').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    setActiveContent(targetId);
+                });
+            });
+
+
+            // Add function to "Add to Cart" buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.trim() === 'Add to Cart') {
+                    button.addEventListener('click', () => {
+                        // Get the cookie name from the parent card
+                        const card = button.closest('.cookie-card');
+                        const cookieName = card.querySelector('h3').textContent;
+                        showMessageBox(`You successfully added one ${cookieName} to your (imaginary) cart!`);
+                    });
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>
